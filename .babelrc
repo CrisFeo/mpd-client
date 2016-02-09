@@ -1,0 +1,4 @@
+{
+  "only": "/src/**/*.{js,jsx}",
+  "presets": ["es2015", "react"]
+}
