@@ -8,8 +8,7 @@ const App = require('./containers/App');
 const createStore = require('./store');
 
 
-ReactDom.render(
-  <Provider store={createStore()}>
-    <App />
-  </Provider>,
-  document.querySelector('[data-id="container"]'));
+ReactDom.render(<Provider store={createStore()}>
+                  <App />
+                </Provider>,
+                document.querySelector('[data-id="container"]'));

@@ -1,5 +1,5 @@
-BABEL = node_modules/.bin/babel
-BROWSERIFY = node_modules/.bin/browserify
+BABEL = node_modules/.bin/babel -s 'inline'
+BROWSERIFY = node_modules/.bin/browserify -d
 ESLINT = node_modules/.bin/eslint
 MOCHA = node_modules/.bin/mocha
 NPM = npm
@@ -9,39 +9,35 @@ BUILD_FILES = $(shell printf '%s\n' $(SRC_FILES) | \
 									    sed 's:^src:build:g' | \
 											sed 's:jsx$$:js:g')
 
-dist/index.html: dist/index.js
-	cp -f src/$(@F) $@
-
-dist/index.js: $(BUILD_FILES)
-	$(BROWSERIFY) -d -o $@ build/$(@F)
-
-build/%.js: src/%.js
-	$(BABEL) -s 'inline' -o $@ $<
-
-build/%.js: src/%.jsx
-	$(BABEL) -s 'inline' -o $@ $<
-
-.PHONY: build_dirs
-build_dirs:
-	find src -type d | \
-	sed 's:src:build:' | \
-	xargs mkdir -p dist
-
-.PHONY: build
-build: build_dirs dist/index.html
+.PHONY: all
+all: $(BUILD_FILES)
+	@mkdir -p dist
+	@$(BROWSERIFY) build/index.js > dist/index.js
+	@echo 'Browserify: build/index.js -> dist/index.js'
+	cp -f src/index.html dist/index.html
 
 .PHONY: clean
 clean:
 	rm -rf build dist
 
+.PHONY: lint
+lint:
+	@$(ESLINT) $(SRC_FILES)
+
 .PHONY: setup
 setup:
-	$(NPM) install
+	@$(NPM) install
 
 .PHONY: test
 test:
-	$(MOCHA) test
+	@$(MOCHA) test
 
-.PHONY: lint
-lint:
-	$(ESLINT) $(SRC_FILES)
+build/%.js: src/%.js
+	@mkdir -p $(@D)
+	@$(BABEL) --presets 'es2015' $< > $@
+	@echo "Babel (JS): $< -> $@"
+
+build/%.js: src/%.jsx
+	@mkdir -p $(@D)
+	@$(BABEL) --presets 'es2015,react' $< > $@
+	@echo "Babel (JSX): $< -> $@"

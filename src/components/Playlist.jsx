@@ -3,7 +3,7 @@
 const React = require('react');
 
 
-module.exports = props => <div>Playlist</div>;
+module.exports = () => <div>Playlist</div>;
 
 module.exports.propTypes = {
   onMoveSong: React.PropTypes.func.isRequired,

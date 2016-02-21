@@ -3,7 +3,7 @@
 const React = require('react');
 
 
-module.exports = props => <div>Now Playing</div>;
+module.exports = () => <div>Now Playing</div>;
 
 module.exports.propTypes = {
   artist: React.PropTypes.string.isRequired,

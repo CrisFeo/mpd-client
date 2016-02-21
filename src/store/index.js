@@ -5,23 +5,6 @@ const redux = require('redux');
 const reducers = require('../reducers');
 
 
-const NEW_INITIAL_STATE = {
-  nowPlaying: {
-    elapsed: 0.0,       // Number
-    isPlaying: false,   // Bool
-    currentTrack: {     // Track
-      artist: '',       // String
-      length: 0.0,      // Number
-      title: '',        // String
-    },
-  },
-  search: {
-    isSearching: false, // Bool
-    results: [],        // Track
-    query: '',          // String
-  },
-};
-
 const INITIAL_STATE = {
   currentTrack: {     // Track
     artist: '',       // String

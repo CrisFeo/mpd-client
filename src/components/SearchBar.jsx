@@ -3,7 +3,7 @@
 const React = require('react');
 
 
-module.exports = props => <div>Search Bar</div>;
+module.exports = () => <div>Search Bar</div>;
 
 module.exports.propTypes = {
   onBlur: React.PropTypes.func.isRequired,

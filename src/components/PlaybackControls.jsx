@@ -3,7 +3,7 @@
 const React = require('react');
 
 
-module.exports = props => <div>Playback Controls</div>;
+module.exports = () => <div>Playback Controls</div>;
 
 module.exports.propTypes = {
   isPlaying: React.PropTypes.bool.isRequired,
