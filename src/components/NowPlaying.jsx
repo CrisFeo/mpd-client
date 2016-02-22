@@ -3,6 +3,11 @@
 const React = require('react');
 
 
+(<style>
+.nowPlaying
+  background-color: blue
+</style>);
+
 module.exports = () => <div>Now Playing</div>;
 
 module.exports.propTypes = {

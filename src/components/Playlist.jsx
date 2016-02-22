@@ -3,6 +3,11 @@
 const React = require('react');
 
 
+(<style>
+.playlist
+  background-color: chartreuse
+</style>);
+
 module.exports = () => <div>Playlist</div>;
 
 module.exports.propTypes = {

@@ -15,7 +15,8 @@
     "babel-preset-react": "6.3.x",
     "browserify": "13.0.x",
     "eslint": "1.10.x",
-    "eslint-plugin-react": "3.16.x"
+    "eslint-plugin-react": "3.16.x",
+    "node-sass": "3.4.x"
   },
   "name": "mpd-client",
   "version": "0.0.1"
