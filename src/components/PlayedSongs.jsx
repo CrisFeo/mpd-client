@@ -22,7 +22,8 @@ const PlaylistItem = require('./PlaylistItem');
 </style>)
 
 const renderTrack = track => (
-  <PlaylistItem artist={track.artist}
+  <PlaylistItem key={track.id}
+                artist={track.artist}
                 duration={track.duration}
                 title={track.title}/>
 );

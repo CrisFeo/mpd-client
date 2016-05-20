@@ -12,7 +12,7 @@
    "es6": true,
    "commonjs": true,
   },
-  "plugins": ["react"]
+  "plugins": ["react"],
   "rules": {
     "curly": [2, "multi-line"],
     "jsx-quotes": [2, "prefer-double"],

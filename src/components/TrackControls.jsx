@@ -1,8 +1,8 @@
 'use strict';
 
 const React = require('react');
-const R = require('ramda');
-const S = require('sanctuary');
+
+const utils = require('./utilities');
 
 
 (<style>
@@ -33,28 +33,20 @@ const S = require('sanctuary');
     vertical-align: middle
 </style>);
 
-const zeroPad = num => R.drop(num.length, '00') + num;
-
-const formatTime = s => {
-  const hours   = R.toString(Math.floor(s / 3600));
-  const minutes = R.toString(Math.floor(s / 60));
-  const seconds = R.toString(s % 60);
-  return hours === '0' ? R.join(':', [minutes, zeroPad(seconds)])
-                       : R.join(':', [hours, zeroPad(minutes), zeroPad(seconds)]);
-}
-
 const TrackControls = props => (
   <div className="track-controls">
     <div className="track-controls__elapsed">
-      {formatTime(props.elapsed)} / {formatTime(props.duration)}
+      {utils.formatTime(props.elapsed)} / {utils.formatTime(props.duration)}
     </div>
-    <div className="track-controls__vote-skip"></div>
+    <div className="track-controls__vote-skip"
+         onClick={props.onClickSkip} ></div>
   </div>
 );
 
 TrackControls.propTypes = {
   duration: React.PropTypes.number.isRequired,
   elapsed: React.PropTypes.number.isRequired,
+  onClickSkip: React.PropTypes.func.isRequired,
 };
 
 module.exports = TrackControls;

@@ -2,13 +2,13 @@
   "author": "CrisFeo",
   "description": "Simple MPD client built with React",
   "dependencies": {
-    "browser-request": "0.3.x",
     "es6-promise": "3.2.x",
     "ramda": "0.21.x",
     "react": "15.0.x",
     "react-dom": "15.0.x",
     "react-redux": "4.4.x",
     "redux": "3.5.x",
+    "reselect": "2.5.x",
     "sanctuary": "0.10.x"
   },
   "devDependencies": {

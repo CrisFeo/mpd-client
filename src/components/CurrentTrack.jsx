@@ -41,7 +41,8 @@ const CurrentTrack = props => (
       <TrackInfo artist={props.currentTrack.artist}
                  title={props.currentTrack.title} />
       <TrackControls duration={props.currentTrack.duration}
-                     elapsed={props.elapsed} />
+                     elapsed={props.elapsed}
+                     onClickSkip={props.onClickSkip} />
     </div>
   </div>
 );
@@ -51,6 +52,7 @@ CurrentTrack.propTypes = {
   elapsed: React.PropTypes.number.isRequired,
   isPlaying: React.PropTypes.bool.isRequired,
   onClickPlayPause: React.PropTypes.func.isRequired,
+  onClickSkip: React.PropTypes.func.isRequired,
 };
 
 module.exports = CurrentTrack;
