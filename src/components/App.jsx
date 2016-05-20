@@ -2,19 +2,31 @@
 
 const React = require('react');
 
+const CurrentTrack = require('../containers/CurrentTrack');
+const PlayedSongs = require('./PlayedSongs');
+const propTypes = require('../constants/propTypes');
+const UpcomingSongs = require('./UpcomingSongs');
+
 
 (<style>
 .app
-  background-color: blue
-</style>);
+  left: 50%
+  position: absolute
+  transform: translateX(-50%)
+  width: $application-width
+</style>)
 
 const App = props => (
-  <div classNames='app'>
-    <span>sup!</span>
+  <div className="app">
+    <PlayedSongs tracks={props.playedTracks} />
+    <CurrentTrack />
+    <UpcomingSongs tracks={props.upcomingTracks} />
   </div>
 );
 
 App.propTypes = {
+  playedTracks: React.PropTypes.arrayOf(propTypes.track).isRequired,
+  upcomingTracks: React.PropTypes.arrayOf(propTypes.track).isRequired,
 };
 
 module.exports = App;

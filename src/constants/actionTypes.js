@@ -1,5 +1,8 @@
 'use strict';
 
-
 module.exports = {
+  ADD_TRACK: 'ADD_TRACK',
+  SWITCH_TRACK: 'SWITCH_TRACK',
+  UPDATE_DURATION: 'UPDATE_DURATION',
+  UPDATE_PLAYING: 'UPDATE_PLAYING',
 };

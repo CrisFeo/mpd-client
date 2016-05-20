@@ -15,7 +15,7 @@ SRC_FILES   = $(JS_FILES) $(JSX_FILES)
 BUILD_FILES = $(shell sed -e 's:src/:build/:g' \
 													-e 's:\.jsx:\.js:g' <<< "$(SRC_FILES)")
 SASS_FILES  = $(shell sed -e 's:src/:build/:g' \
-												  -e 's:\.jsx:\.sass:g' <<< "$(JSX_FILES)")
+													-e 's:\.jsx:\.sass:g' <<< "$(JSX_FILES)")
 
 VENDOR_PACKAGES = $(shell node --print 'Object.keys(require("./package.json").dependencies).join("\n")')
 VENDOR_EXCLUDES = $(patsubst %,-x %,$(VENDOR_PACKAGES))
@@ -48,45 +48,49 @@ test:
 
 build/%.js: src/%.js
 	@mkdir -p $(@D)
-	@$(BABEL) $(BABEL_OPTS) --presets 'es2015,react' $< > $@
 	@$(LOG) 'Babel (JS)' "$< -> $@"
+	@$(BABEL) $(BABEL_OPTS) --presets 'es2015,react' $< > $@
 
 build/%.js: build/%.nostyle.jsx
 	@mkdir -p $(@D)
-	@$(BABEL) $(BABEL_OPTS) --presets 'es2015,react' $< > $@
 	@$(LOG) 'Babel (JSX)' "$< -> $@"
+	@$(BABEL) $(BABEL_OPTS) --presets 'es2015,react' $< > $@
 
 build/%.nostyle.jsx: src/%.jsx
 	@mkdir -p $(@D)
-	@awk '/<style>/{isStyle=1} /<\/style>/{isStyle=0;next} isStyle==0' < $< > $@
 	@$(LOG) 'Strip Styles' "$< -> $@"
+	@awk '/<style>/{isStyle=1} /<\/style>/{isStyle=0;next} isStyle==0' < $< > $@
+
+build/%.sass: src/%.sass
+	@mkdir -p $(@D)
+	@
 
 build/%.sass: src/%.jsx
 	@mkdir -p $(@D)
-	@awk '/<style>/{isStyle=1;next} /<\/style>/{isStyle=0} isStyle' < $< > $@
 	@$(LOG) 'Extract SASS' "$< -> $@"
+	@awk '/<style>/{isStyle=1;next} /<\/style>/{isStyle=0} isStyle' < $< > $@
 
-build/styles.sass: $(SASS_FILES)
+build/styles.sass: src/index.sass $(SASS_FILES)
 	@mkdir -p $(@D)
-	@cat $(SASS_FILES) > $@
 	@$(LOG) 'Concat SASS' "build/*.sass -> $@"
+	@cat $< $(SASS_FILES) > $@
 
 dist/index.html: src/index.html
 	@mkdir -p $(@D)
-	@cp -f $< $@
 	@$(LOG) 'Copy' "$< -> $@"
+	@cp -f $< $@
 
 dist/bundle.js: build/index.js $(BUILD_FILES)
 	@mkdir -p $(@D)
-	@$(BROWSERIFY) $(BROWSERIFY_OPTS) $(VENDOR_EXCLUDES) $< > $@
 	@$(LOG) 'Browserify' "$< -> $@"
+	@$(BROWSERIFY) $(BROWSERIFY_OPTS) $(VENDOR_EXCLUDES) $< > $@
 
 dist/vendor.js: $(VENDOR_PACKAGES:%=node_modules/%)
 	@mkdir -p $(@D)
-	@$(BROWSERIFY) $(VENDOR_INCLUDES) > $@
 	@$(LOG) 'Browserify' "$< -> $@"
+	@$(BROWSERIFY) $(VENDOR_INCLUDES) > $@
 
 dist/styles.css: build/styles.sass
 	@mkdir -p $(@D)
-	@$(NODE_SASS) < $< > $@
 	@$(LOG) 'Compile SASS' "$< -> $@"
+	@$(NODE_SASS) < $< > $@
