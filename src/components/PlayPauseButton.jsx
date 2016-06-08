@@ -10,13 +10,13 @@ const React = require('react');
   border-radius: 50%
   color: #9f9f9f
   font-size: 1rem
-  height: 70px
+  height: 60px
   text-align: center
-  width: 70px
+  width: 60px
 
   &__play
     background-image: $icon-play
-    background-position: 20px 12px
+    background-position: 19px 12px
     background-repeat: no-repeat
     display: block;
     height: 100%
@@ -24,7 +24,7 @@ const React = require('react');
 
   &__pause
     background-image: $icon-pause
-    background-position: 20px 15px
+    background-position: 18px 15px
     background-repeat: no-repeat
     display: block;
     height: 100%

@@ -21,12 +21,6 @@ VENDOR_PACKAGES = $(shell node --print 'Object.keys(require("./package.json").de
 VENDOR_EXCLUDES = $(patsubst %,-x %,$(VENDOR_PACKAGES))
 VENDOR_INCLUDES = $(patsubst %,-r %,$(VENDOR_PACKAGES))
 
-.PHONY: dbg
-dbg:
-	@echo $(VENDOR_PACKAGES)
-	@echo $(VENDOR_EXCLUDES)
-	@echo $(VENDOR_INCLUDES)
-
 .PHONY: all
 all: dist/index.html dist/bundle.js dist/vendor.js dist/styles.css
 

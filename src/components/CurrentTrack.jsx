@@ -22,8 +22,8 @@ const TrackInfo = require('./TrackInfo');
 
   &__floating-button
     position: absolute
-    bottom: -0.5 * $list-item-height
-    left: 2 * $list-item-height
+    bottom: -13px
+    left: 85px
 
   &__container
     display: flex

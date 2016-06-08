@@ -4,6 +4,7 @@ const React = require('react');
 
 
 (<style>
+$track-info-data-width: 230px
 .track-info
   flex-grow: 1
   height: 100%
@@ -12,11 +13,19 @@ const React = require('react');
 
   &__title
     font-size: 1.2rem
+    max-width: $track-info-data-width;
+    overflow-x: hidden;
     padding-top: 20px
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
   &__artist
     font-size: 1rem
+    max-width: $track-info-data-width;
+    overflow-x: hidden;
     padding-top: 10px
+    text-overflow: ellipsis;
+    white-space: nowrap;
 </style>);
 
 const TrackInfo = props => (
