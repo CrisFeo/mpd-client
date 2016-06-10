@@ -3,6 +3,8 @@
   "description": "Simple MPD client built with React",
   "dependencies": {
     "es6-promise": "3.2.x",
+    "fluture": "1.0.x",
+    "futurize": "1.0.x",
     "mopidy": "0.5.x",
     "ramda": "0.21.x",
     "react": "15.0.x",
