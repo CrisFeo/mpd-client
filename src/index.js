@@ -7,13 +7,9 @@ const Provider = require('react-redux').Provider;
 
 const App = require('./containers/App');
 const createStore = require('./store');
-const mopidy = require('./api/mopidy');
 
 
-window.store = createStore();
-window.mopidy = mopidy.initialize('ws://localhost:6680/mopidy/ws',
-                                  window.store.dispatch);
-
+window.store = createStore('ws://localhost:6680/mopidy/ws');
 ReactDom.render(<Provider store={window.store}>
                   <App />
                 </Provider>,

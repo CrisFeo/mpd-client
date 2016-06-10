@@ -9,14 +9,14 @@ const util = require('./utilities');
 
 const BLANK_TRACK = {
   artist: '',
-  albumImage: 'http://placehold.it/300',
+  albumImage: '',
   duration: 0,
   index: -1,
   title: '',
   uri: '',
 }
 
-const currentIndex =util.withDefault(0, (state, action) => {
+const currentIndex = util.withDefault(0, (state, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_CURRENT_INDEX: return action.value;
     default:                               return state;
@@ -26,7 +26,6 @@ const currentIndex =util.withDefault(0, (state, action) => {
 const currentTrack = util.withDefault(BLANK_TRACK, (state, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_CURRENT_TRACK: return action.value;
-    case actionTypes.UPDATE_ALBUM_IMAGE:   return Object.assign({ albumImage: value }, state);
     default:                               return state;
   }
 });

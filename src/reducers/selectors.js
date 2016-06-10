@@ -7,7 +7,7 @@ const S = require('sanctuary');
 
 const playedTracks = reselect.createSelector(
   [R.prop('currentIndex'), R.prop('tracks')],
-  (currentIndex, tracks) =>S.pipe([
+  (currentIndex, tracks) => S.pipe([
       R.reject(R.propEq('id', 'INIT')),
       R.take(currentIndex),
       R.takeLast(3),

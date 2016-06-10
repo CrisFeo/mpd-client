@@ -12,7 +12,7 @@
     "react-redux": "4.4.x",
     "redux": "3.5.x",
     "reselect": "2.5.x",
-    "sanctuary": "0.10.x"
+    "sanctuary": "0.11.x"
   },
   "devDependencies": {
     "babel-cli": "6.9.x",

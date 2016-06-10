@@ -1,5 +1,7 @@
 'use strict';
 
+const Future = require('fluture');
+const R = require('ramda');
 const S = require('sanctuary');
 
 
@@ -15,14 +17,22 @@ const catchAll = store => next => action => {
   }
 };
 
-// thunk :: Store -> (Action -> Action) -> Action -> Action
-const thunk = store => next => action =>
-  typeof action === 'function' ?
-    action(store.dispatch, store.getState) :
+// apiOrchestrator :: MopidyApi -> Store -> (Action -> Action) -> Action -> Action
+const apiOrchestrator = mopidy => store => next => action => {
+  if (typeof action === 'function') {
+    const future = action(mopidy);
+    if (Future.isFuture(future) === true) {
+      future.fork(err => console.error(err),
+                  R.map(store.dispatch));
+    } else {
+      throw new Error('Dispatched function must return a Future');
+    }
+  } else {
     next(action);
-
+  }
+};
 
 module.exports = {
+  apiOrchestrator: apiOrchestrator,
   catchAll: catchAll,
-  thunk: thunk,
 };

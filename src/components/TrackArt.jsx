@@ -12,6 +12,7 @@ const React = require('react');
 
   &__img
     align-self: center
+    background: #CCCCCC
     max-height: 100%
     max-width: 100%
 </style>);

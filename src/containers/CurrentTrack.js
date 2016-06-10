@@ -2,7 +2,7 @@
 
 const reactRedux = require('react-redux');
 
-const actions = require('../actions');
+const api = require('../api');
 const CurrentTrack = require('../components/CurrentTrack');
 
 
@@ -13,8 +13,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClickPlayPause: () => dispatch(actions.togglePlayback()),
-  onClickSkip: () => dispatch(actions.skipTrack()),
+  onClickPlayPause: () => dispatch(api.togglePlayback),
+  onClickSkip: () => dispatch(api.nextTrack),
 });
 
 module.exports = reactRedux.connect(mapStateToProps,
